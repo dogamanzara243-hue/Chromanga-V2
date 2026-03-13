@@ -1,6 +1,7 @@
+
 const USER = "dogamanzara243-hue";
 const REPO = "Chromanga-V2";
-const BASE = `https://raw.githubusercontent.com/${USER}/${REPO}/main`;
+const BASE = "https://raw.githubusercontent.com/" + USER + "/" + REPO + "/main";
 
 window.onload = () => {
     const p = new URLSearchParams(window.location.search);
@@ -13,40 +14,37 @@ async function loadHome() {
     const list = document.getElementById('manga-list');
     if(!list) return;
     try {
-        const r = await fetch(`${BASE}/manga-listesi.json?v=${Date.now()}`);
-        const mangalar = await r.json();
-        list.innerHTML = mangalar.map(m => `
-            <div class="manga-card" onclick="location.href='reader.html?manga=${m.slug}&bolum=1'">
-                <img src="${m.cover}">
-                <h3>${m.title}</h3>
-            </div>`).join('');
-    } catch(e) { console.error("Liste hatası"); }
+        const r = await fetch(BASE + "/manga-listesi.json?v=" + Date.now());
+        const data = await r.json();
+        window.allMangas = data;
+        renderMangas(data);
+        document.getElementById('mangaSearch').oninput = (e) => {
+            const term = e.target.value.toLowerCase();
+            renderMangas(window.allMangas.filter(m => m.title.toLowerCase().includes(term)));
+        };
+    } catch(e) { list.innerHTML = "<h3>Manga listesi yüklenemedi!</h3>"; }
+}
+
+function renderMangas(data) {
+    const list = document.getElementById('manga-list');
+    list.innerHTML = data.map(m => '<div class="manga-card" onclick="location.href=\'reader.html?manga=' + m.slug + '&bolum=1\'"><img src="' + m.cover + '"><h3>' + m.title + '</h3></div>').join('');
 }
 
 async function loadReader(s, b) {
     const container = document.getElementById('image-container');
-    document.getElementById('manga-title').innerText = `Bölüm ${b}`;
-    const cleanSlug = s.toLowerCase().trim();
-    
+    const bInt = parseInt(b);
+    document.getElementById('manga-title').innerText = "Bölüm " + b;
     try {
-        const url = `${BASE}/veriler/${cleanSlug}/bolum-${b}.json?v=${Date.now()}`;
-        const r = await fetch(url);
-        if(!r.ok) throw new Error("Dosya bulunamadı: " + url);
+        const r = await fetch(BASE + "/veriler/" + s + "/bolum-" + b + ".json?v=" + Date.now());
+        if(!r.ok) throw new Error();
         const data = await r.json();
-        container.innerHTML = data.images.map(img => `<img src="${img}" style="width:100%">`).join('');
+        container.innerHTML = data.images.map(u => '<img src="' + u + '" loading="lazy">').join('');
         
-        // Navigasyon
-        let nav = document.getElementById('nav');
-        if(!nav) { nav = document.createElement('div'); nav.id='nav'; document.body.appendChild(nav); }
-        nav.innerHTML = `<div style="text-align:center; padding:20px;">
-            <button onclick="location.href='reader.html?manga=${s}&bolum=${parseInt(b)-1}'">Geri</button>
-            <button onclick="location.href='index.html'">Ev</button>
-            <button onclick="location.href='reader.html?manga=${s}&bolum=${parseInt(b)+1}'">İleri</button>
-        </div>`;
+        let nav = document.getElementById('reader-nav');
+        nav.innerHTML = (bInt > 1 ? '<button onclick="location.href=\'reader.html?manga=' + s + '&bolum=' + (bInt-1) + '\'">⬅ Geri</button>' : '') +
+                        '<button onclick="location.href=\'index.html\'">Ev</button>' +
+                        '<button onclick="location.href=\'reader.html?manga=' + s + '&bolum=' + (bInt+1) + '\'">İleri ➡</button>';
     } catch(e) {
-        container.innerHTML = `<div style="color:white;text-align:center;margin-top:50px;">
-            <h3>Bölüm Okunamadı!</h3>
-            <p style="font-size:12px; color:gray;">Aranan yol: ${e.message}</p>
-        </div>`;
+        container.innerHTML = "<div style='text-align:center;padding:100px;'><h3>Bölüm henüz eklenmemiş!</h3><a href='index.html' style='color:red'>Ana Sayfaya Dön</a></div>";
     }
 }
