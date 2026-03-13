@@ -1,7 +1,15 @@
-
 const USER = "dogamanzara243-hue";
 const REPO = "Chromanga-V2";
-const BASE = "https://raw.githubusercontent.com/" + USER + "/" + REPO + "/main";
+const BASE = `https://raw.githubusercontent.com/${USER}/${REPO}/main`;
+
+// Botun klasörleme mantığıyla %100 uyumlu hale getiren fonksiyon
+function fixSlug(text) {
+    return text.toString().toLowerCase()
+        .replace(/\s+/g, '-')           // Boşlukları tire yap
+        .replace(/[^\w\-]+/g, '')       // Özel karakterleri sil
+        .replace(/\-\-+/g, '-')         // Çift tireleri tek yap
+        .trim();
+}
 
 window.onload = () => {
     const p = new URLSearchParams(window.location.search);
@@ -14,37 +22,37 @@ async function loadHome() {
     const list = document.getElementById('manga-list');
     if(!list) return;
     try {
-        const r = await fetch(BASE + "/manga-listesi.json?v=" + Date.now());
-        const data = await r.json();
-        window.allMangas = data;
-        renderMangas(data);
-        document.getElementById('mangaSearch').oninput = (e) => {
-            const term = e.target.value.toLowerCase();
-            renderMangas(window.allMangas.filter(m => m.title.toLowerCase().includes(term)));
-        };
-    } catch(e) { list.innerHTML = "<h3>Manga listesi yüklenemedi!</h3>"; }
-}
-
-function renderMangas(data) {
-    const list = document.getElementById('manga-list');
-    list.innerHTML = data.map(m => '<div class="manga-card" onclick="location.href=\'reader.html?manga=' + m.slug + '&bolum=1\'"><img src="' + m.cover + '"><h3>' + m.title + '</h3></div>').join('');
+        const r = await fetch(`${BASE}/manga-listesi.json?v=${Date.now()}`);
+        const mangalar = await r.json();
+        window.allMangas = mangalar;
+        list.innerHTML = mangalar.map(m => `
+            <div class="manga-card" onclick="location.href='reader.html?manga=${fixSlug(m.slug || m.title)}&bolum=1'">
+                <img src="${m.cover}" onerror="this.src='https://via.placeholder.com/200x300?text=Kapak+Yok'">
+                <h3>${m.title}</h3>
+            </div>`).join('');
+    } catch(e) { console.error("Liste yüklenemedi"); }
 }
 
 async function loadReader(s, b) {
     const container = document.getElementById('image-container');
-    const bInt = parseInt(b);
-    document.getElementById('manga-title').innerText = "Bölüm " + b;
+    const slug = fixSlug(s);
     try {
-        const r = await fetch(BASE + "/veriler/" + s + "/bolum-" + b + ".json?v=" + Date.now());
-        if(!r.ok) throw new Error();
+        const url = `${BASE}/veriler/${slug}/bolum-${b}.json?v=${Date.now()}`;
+        const r = await fetch(url);
+        if(!r.ok) throw new Error("Dosya bulunamadı: " + url);
         const data = await r.json();
-        container.innerHTML = data.images.map(u => '<img src="' + u + '" loading="lazy">').join('');
+        container.innerHTML = data.images.map(img => `<img src="${img}" style="width:100%; display:block;">`).join('');
         
-        let nav = document.getElementById('reader-nav');
-        nav.innerHTML = (bInt > 1 ? '<button onclick="location.href=\'reader.html?manga=' + s + '&bolum=' + (bInt-1) + '\'">⬅ Geri</button>' : '') +
-                        '<button onclick="location.href=\'index.html\'">Ev</button>' +
-                        '<button onclick="location.href=\'reader.html?manga=' + s + '&bolum=' + (bInt+1) + '\'">İleri ➡</button>';
+        document.getElementById('reader-nav').innerHTML = `
+            <div class="nav-container">
+                <button onclick="location.href='reader.html?manga=${slug}&bolum=${Math.max(1, parseInt(b)-1)}'">⬅</button>
+                <button onclick="location.href='index.html'">Ev</button>
+                <button onclick="location.href='reader.html?manga=${slug}&bolum=${parseInt(b)+1}'">➡</button>
+            </div>`;
     } catch(e) {
-        container.innerHTML = "<div style='text-align:center;padding:100px;'><h3>Bölüm henüz eklenmemiş!</h3><a href='index.html' style='color:red'>Ana Sayfaya Dön</a></div>";
+        container.innerHTML = `<div style="color:white;text-align:center;padding:50px;">
+            <h3>Bölüm Henüz Yüklenmemiş veya Hatalı</h3>
+            <p style="font-size:10px; color:gray;">Hata: ${e.message}</p>
+        </div>`;
     }
 }
