@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manga Oku | Chromanga-V2</title>
+    <style>
+        body { background: #0b0c10; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
+        .reader-container { width: 100%; max-width: 900px; display: flex; flex-direction: column; }
+        .reader-container img { width: 100%; height: auto; display: block; margin: 0; padding: 0; }
+        .nav-buttons { padding: 20px; display: flex; gap: 20px; }
+        .btn { background: #ff4d4d; color: white; padding: 10px 25px; border-radius: 5px; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="nav-buttons">
+        <a id="geri-btn" href="#" class="btn">← Bölüm Listesi</a>
+        <a href="index.html" class="btn">Ana Sayfa</a>
+    </div>
+    <div id="reader" class="reader-container">
+        </div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const slug = params.get('slug');
+        const bolum = params.get('bolum');
+
+        document.getElementById('geri-btn').href = `detay.html?slug=${slug}`;
+
+        async function resimleriYukle() {
+            try {
+                const res = await fetch(`veriler/${slug}/bolum-${bolum}.json`);
+                const data = await res.json();
+                const reader = document.getElementById('reader');
+                
+                data.images.forEach(imgUrl => {
+                    const img = document.createElement('img');
+                    img.src = imgUrl;
+                    img.loading = "lazy";
+                    reader.appendChild(img);
+                });
+            } catch(e) {
+                alert("Bölüm yüklenemedi veya henüz eklenmemiş.");
+            }
+        }
+        resimleriYukle();
+    </script>
+</body>
+</html>
