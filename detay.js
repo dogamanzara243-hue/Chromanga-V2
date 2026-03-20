@@ -1,5 +1,6 @@
 
-const slug = new URLSearchParams(window.location.search).get('slug');
+const urlParams = new URLSearchParams(window.location.search);
+const slug = urlParams.get('slug');
 
 async function detayYukle() {
     const res = await fetch('manga-listesi.json');
@@ -7,20 +8,20 @@ async function detayYukle() {
     const manga = mangalar.find(m => m.slug === slug);
 
     if(manga) {
-        document.title = `${manga.title} - Chromanga-V2`;
         document.getElementById('manga-baslik').innerText = manga.title;
         document.getElementById('manga-ozet').innerText = manga.description;
         document.getElementById('manga-kapak').src = manga.cover;
-        if(document.getElementById('blur-bg')) document.getElementById('blur-bg').style.backgroundImage = `url(${manga.cover})`;
+        document.getElementById('blur-bg').style.backgroundImage = `url(${manga.cover})`;
     }
 
     const liste = document.getElementById('bolum-listesi');
-    // Bolumleri dinamik kontrol et
-    for(let i=1; i<=200; i++) {
-        const check = await fetch(`veriler/${slug}/bolum-${i}.json`);
-        if(check.ok) {
-            liste.innerHTML += `<a href="okuyucu.html?slug=${slug}&bolum=${i}" class="bolum-item">Bölüm ${i}</a>`;
-        } else if (i > 10) break;
+    // Örnek olarak 1'den 100'e kadar bölümleri kontrol et
+    for(let b=1; b<=100; b++) {
+        try {
+            const chRes = await fetch(`veriler/${slug}/bolum-${b}.json`);
+            if(!chRes.ok) break;
+            liste.innerHTML += `<a href="okuyucu.html?slug=${slug}&bolum=${b}" class="bolum-item">Bölüm ${b}</a>`;
+        } catch(e) { break; }
     }
 }
-document.addEventListener('DOMContentLoaded', detayYukle);
+detayYukle();
