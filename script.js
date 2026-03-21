@@ -1,23 +1,43 @@
+// script.js - ZIP Destekli V22
+async function bolumAc(zipUrl) {
+    const reader = document.getElementById('manga-reader');
+    reader.innerHTML = "<div class='loading'>📦 Bölüm Hazırlanıyor...</div>";
 
-const repoOwner = "dogamanzara243-hue";
-const repoName = "Chromanga-V2";
-
-async function fetchMangaList() {
     try {
-        const response = await fetch(`https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/manga-listesi.json?t=${new Date().getTime()}`);
-        const data = await response.json();
-        const grid = document.getElementById('manga-grid');
-        if(!grid) return;
-        grid.innerHTML = data.map(manga => `
-            <div class="manga-card" onclick="location.href='detay.html?slug=${manga.slug}'">
-                <img src="${manga.cover}" alt="${manga.title}" loading="lazy">
-                <div class="manga-info">
-                    <h3>${manga.title}</h3>
-                    <p>Güncelleme: ${manga.updated || 'Yeni'}</p>
-                </div>
-            </div>
-        `).join('');
-    } catch (err) { console.error("Liste yüklenemedi:", err); }
-}
+        // 1. ZIP dosyasını Discord'dan çek
+        const response = await fetch(zipUrl);
+        if (!response.ok) throw new Error("Dosya alınamadı.");
+        const data = await response.arrayBuffer();
 
-if (document.getElementById('manga-grid')) fetchMangaList();
+        // 2. JSZip ile bellekte aç
+        const zip = await JSZip.loadAsync(data);
+        const images = [];
+
+        // 3. İçindeki resimleri bul ve listele
+        zip.forEach((path, file) => {
+            if (!file.dir && path.match(/\.(webp|jpg|jpeg|png)$/i)) {
+                images.push(file);
+            }
+        });
+
+        // Sayfa isimlerine göre (001, 002...) sırala
+        images.sort((a, b) => a.name.localeCompare(b.name, undefined, {numeric: true}));
+
+        reader.innerHTML = ""; // Yükleniyor yazısını sil
+
+        // 4. Resimleri ekrana bas
+        for (let file of images) {
+            const blob = await file.async("blob");
+            const url = URL.createObjectURL(blob);
+            
+            const img = document.createElement('img');
+            img.src = url;
+            img.className = "manga-page";
+            img.loading = "lazy"; // Performans için
+            reader.appendChild(img);
+        }
+    } catch (err) {
+        console.error(err);
+        reader.innerHTML = "<div class='error'>❌ Hata: Bölüm yüklenemedi.</div>";
+    }
+}
