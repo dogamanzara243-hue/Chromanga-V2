@@ -1,43 +1,49 @@
-// script.js - ZIP Destekli V22
-async function bolumAc(zipUrl) {
-    const reader = document.getElementById('manga-reader');
-    reader.innerHTML = "<div class='loading'>📦 Bölüm Hazırlanıyor...</div>";
 
-    try {
-        // 1. ZIP dosyasını Discord'dan çek
-        const response = await fetch(zipUrl);
-        if (!response.ok) throw new Error("Dosya alınamadı.");
-        const data = await response.arrayBuffer();
+const jsonUrl = "manga-listesi.json";
 
-        // 2. JSZip ile bellekte aç
-        const zip = await JSZip.loadAsync(data);
-        const images = [];
+async function yukle() {
+    const res = await fetch(jsonUrl + "?v=" + Date.now());
+    const veriler = await res.json();
+    const grid = document.getElementById('manga-grid');
+    grid.innerHTML = "";
 
-        // 3. İçindeki resimleri bul ve listele
-        zip.forEach((path, file) => {
-            if (!file.dir && path.match(/\.(webp|jpg|jpeg|png)$/i)) {
-                images.push(file);
-            }
-        });
+    veriler.forEach(manga => {
+        const div = document.createElement('div');
+        div.className = "manga-card";
+        div.innerHTML = `<img src="${manga.cover}"><h3>${manga.title}</h3>`;
+        div.onclick = () => bolumSec(manga);
+        grid.appendChild(div);
+    });
+}
 
-        // Sayfa isimlerine göre (001, 002...) sırala
-        images.sort((a, b) => a.name.localeCompare(b.name, undefined, {numeric: true}));
-
-        reader.innerHTML = ""; // Yükleniyor yazısını sil
-
-        // 4. Resimleri ekrana bas
-        for (let file of images) {
-            const blob = await file.async("blob");
-            const url = URL.createObjectURL(blob);
-            
-            const img = document.createElement('img');
-            img.src = url;
-            img.className = "manga-page";
-            img.loading = "lazy"; // Performans için
-            reader.appendChild(img);
-        }
-    } catch (err) {
-        console.error(err);
-        reader.innerHTML = "<div class='error'>❌ Hata: Bölüm yüklenemedi.</div>";
+function bolumSec(manga) {
+    const bolum = prompt("Hangi bölüm? (Örn: bolum-1)");
+    if(manga.bolumler[bolum]) {
+        okuyucuBaslat(manga.bolumler[bolum]);
     }
 }
+
+async function okuyucuBaslat(zipUrl) {
+    document.getElementById('reader-modal').style.display = "block";
+    const reader = document.getElementById('manga-reader');
+    reader.innerHTML = "Hazırlanıyor...";
+    
+    const resp = await fetch(zipUrl);
+    const data = await resp.arrayBuffer();
+    const zip = await JSZip.loadAsync(data);
+    
+    const imgs = [];
+    zip.forEach((path, file) => { if(!file.dir) imgs.push(file); });
+    imgs.sort((a,b) => a.name.localeCompare(b.name, undefined, {numeric:true}));
+    
+    reader.innerHTML = "";
+    for(let f of imgs) {
+        const b = await f.async("blob");
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(b);
+        reader.appendChild(img);
+    }
+}
+
+function kapat() { document.getElementById('reader-modal').style.display = "none"; }
+window.onload = yukle;
