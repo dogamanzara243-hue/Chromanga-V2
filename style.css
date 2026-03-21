@@ -12,3 +12,23 @@ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:
 .manga-info { padding: 10px; text-align: center; }
 .manga-info h3 { font-size: 14px; margin: 0; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .manga-info p { font-size: 11px; color: #999; margin: 5px 0 0; }
+#manga-reader {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    background: #111; /* Gece modu */
+}
+
+.manga-page {
+    width: 100%;
+    display: block;
+    margin: 0;
+    border: none;
+}
+
+.loading, .error {
+    padding: 100px 20px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+  }
