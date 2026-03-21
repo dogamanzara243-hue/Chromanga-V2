@@ -1,22 +1,20 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chromanga-V2 | Güncel Türkçe Manga Oku</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manga Portal V2</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 <body>
-    <header class="main-header">
-        <div class="logo">Chromanga V2</div>
-        <nav><a href="index.html">Ana Sayfa</a> | <a href="privacy.html">Gizlilik</a></nav>
-    </header>
-
-    <div class="ad-container"> <p>Reklam Alanı</p>
+    <header><h1>Manga Arşivi</h1></header>
+    <div id="manga-grid" class="manga-grid"></div>
+    <div id="reader-modal" style="display:none;">
+        <button onclick="kapat()">Kapat</button>
+        <div id="manga-reader"></div>
     </div>
-
-    <div class="container" id="manga-grid"></div>
-
     <script src="script.js"></script>
 </body>
 </html>
