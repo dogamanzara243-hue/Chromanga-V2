@@ -1,17 +1,11 @@
 
-:root { --bg: #0b0c10; --card: #161a21; --accent: #ff4d4d; --text: #fff; --gray: #9ca3af; }
-body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; }
-.container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-#manga-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
-.manga-card { background: var(--card); border-radius: 12px; overflow: hidden; transition: 0.3s; border: 1px solid #232931; cursor: pointer; }
-.manga-card img { width: 100%; height: 380px; object-fit: cover; }
-.info { padding: 15px; } .info h3 { margin: 0; font-size: 18px; }
-
-/* Detay Sayfası Tasarımı */
-.banner-container { position: relative; height: 450px; overflow: hidden; display: flex; align-items: center; padding: 0 10%; }
-.blur-bg { position: absolute; top:0; left:0; width:100%; height:100%; background-size: cover; filter: blur(25px) brightness(0.3); z-index: -1; }
-.banner-content { display: flex; gap: 30px; align-items: flex-end; z-index: 1; }
-#manga-kapak { width: 220px; border-radius: 12px; border: 3px solid var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-.bolum-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; margin-top: 20px; }
-.bolum-item { background: var(--card); padding: 15px; text-align: center; border-radius: 8px; color: #fff; text-decoration: none; border: 1px solid #333; transition: 0.3s; }
-.bolum-item:hover { background: var(--accent); transform: scale(1.05); }
+:root { --primary: #27ae60; --dark: #2c3e50; --light: #fdfdfd; }
+body { background: var(--light); color: var(--dark); font-family: sans-serif; margin: 0; line-height: 1.6; }
+.navbar { background: #fff; border-bottom: 2px solid var(--primary); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; }
+.ad-slot { background: #f9f9f9; border: 1px dashed #ddd; text-align: center; padding: 20px; margin: 10px auto; max-width: 728px; color: #999; }
+.container { max-width: 1200px; margin: auto; padding: 20px; }
+#manga-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
+.manga-card { background: #fff; border: 1px solid #eee; border-radius: 5px; overflow: hidden; transition: 0.3s; cursor: pointer; }
+.manga-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+.manga-card img { width: 100%; height: 260px; object-fit: cover; }
+.manga-card h3 { font-size: 14px; padding: 10px; margin: 0; text-align: center; }
