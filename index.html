@@ -1,20 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manga Portal V2</title>
+    <title>Manga Arşivi V2</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 <body>
-    <header><h1>Manga Arşivi</h1></header>
+    <header><h1>⛩️ Chromanga Portal</h1></header>
+    
     <div id="manga-grid" class="manga-grid"></div>
+
     <div id="reader-modal" style="display:none;">
-        <button onclick="kapat()">Kapat</button>
-        <div id="manga-reader"></div>
+        <div class="reader-nav">
+            <button onclick="kapat()">✖ Kapat</button>
+        </div>
+        <div id="manga-pages"></div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
