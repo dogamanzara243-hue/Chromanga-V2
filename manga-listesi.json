@@ -1,11 +1,11 @@
 [
-  {
-    "title": "Solo Leveling: Ragnarok",
-    "slug": "solo-leveling-ragnarok",
-    "cover": "https://m.media-amazon.com/images/I/71Y8KzN+ZpL._AC_UF1000,1000_QL80_.jpg",
-    "updated": "Bölüm 1 Eklendi",
-    "bolumler": {
-      "bolum-1": "TEST_LINKI"
+    {
+        "title": "Solo Leveling: Ragnarok",
+        "slug": "solo-leveling-ragnarok",
+        "cover": "https://m.media-amazon.com/images/I/71Y8KzN+ZpL._AC_UF1000,1000_QL80_.jpg",
+        "updated": "Bölüm 1 Eklendi",
+        "bolumler": {
+            "bolum-1": "TEST_LINKI"
+        }
     }
-  }
 ]
