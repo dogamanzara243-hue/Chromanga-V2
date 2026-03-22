@@ -1,40 +1,51 @@
+// script.js - V31 Kesin Çözüm
 const JSON_URL = "manga-listesi.json";
 
-// 1. Mangaları Yükle ve Kartları Oluştur
-async function mangalariBaslat() {
+async function siteyiYukle() {
     const grid = document.getElementById('manga-grid');
-    grid.innerHTML = "<p>📡 Veriler yükleniyor...</p>";
+    grid.innerHTML = "📡 Veriler senkronize ediliyor...";
 
     try {
-        const response = await fetch(JSON_URL + "?v=" + Date.now());
-        const veriler = await response.json();
+        // Önbelleği (cache) kırmak için v= ekliyoruz
+        const res = await fetch(JSON_URL + "?v=" + Date.now());
+        const veriler = await res.json();
 
-        grid.innerHTML = ""; // Yükleniyor yazısını temizle
+        if (veriler.length === 0) {
+            grid.innerHTML = "📭 Liste şu an boş. Discord'dan veri bekleniyor...";
+            return;
+        }
 
+        grid.innerHTML = ""; // Temizle
         veriler.forEach(manga => {
             const card = document.createElement('div');
             card.className = "manga-card";
             card.innerHTML = `
-                <img src="${manga.cover}" alt="${manga.title}">
+                <img src="${manga.cover}" onerror="this.src='https://via.placeholder.com/200x300?text=Kapak+Yok'">
                 <h3>${manga.title}</h3>
+                <p style="font-size:12px; color:gray; text-align:center;">${manga.updated}</p>
             `;
             card.onclick = () => bolumSec(manga);
             grid.appendChild(card);
         });
     } catch (err) {
-        grid.innerHTML = `<p style="color:red">🚨 Hata: Veri çekilemedi. (${err.message})</p>`;
+        grid.innerHTML = "❌ Hata: Veri dosyası okunamadı. JSON formatını kontrol et!";
+        console.error(err);
     }
 }
 
-// 2. Bölüm Seçme (Şimdilik Basit Prompt)
+// Bölüm seçme ve ZIP okuyucuya gönderme
 function bolumSec(manga) {
-    const bolumNo = prompt(`${manga.title}\nOkumak istediğiniz bölümü yazın (Örn: 1)`);
-    const anahtar = `bolum-${bolumNo}`;
-
-    if (manga.bolumler && manga.bolumler[anahtar]) {
-        zipOkuyucuBaslat(manga.bolumler[anahtar]);
+    const b = prompt(`${manga.title}\nBölüm numarasını yazın (Örn: 1):`);
+    const key = "bolum-" + b;
+    if(manga.bolumler && manga.bolumler[key]) {
+        // ZIP okuyucu fonksiyonunu burada çağır (önceki verdiğim kodlardaki gibi)
+        zipOkuyucuBaslat(manga.bolumler[key]);
     } else {
-        alert("Üzgünüz, bu bölüm henüz eklenmemiş!");
+        alert("Bu bölüm henüz eklenmemiş!");
+    }
+}
+
+window.onload = siteyiYukle;        alert("Üzgünüz, bu bölüm henüz eklenmemiş!");
     }
 }
 
