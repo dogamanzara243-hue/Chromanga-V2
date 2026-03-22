@@ -7,5 +7,45 @@
         "bolumler": {
             "bolum-1": "TEST_LINKI"
         }
+    },
+    {
+        "title": "I Am Not A Regressor",
+        "slug": "i-am-not-a-regressor",
+        "cover": "https://via.placeholder.com/300x450?text=Kapak+Yok",
+        "updated": "Bölüm 10 eklendi",
+        "bolumler": {
+            "bolum-31": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276675422949446/i-am-not-a-regressor_B31.zip?ex=69c14732&is=69bff5b2&hm=81250b534770c292e1a5cc83d0779ad16ab3413ad6f1d8025f03ae5aebd0b403&",
+            "bolum-32": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276676081582161/i-am-not-a-regressor_B32.zip?ex=69c14732&is=69bff5b2&hm=942cd60f58415bf8c6d6e6f5fb3b2e67d6f25a519919f09c569993997fb24127&",
+            "bolum-21": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276661833535698/i-am-not-a-regressor_B21.zip?ex=69c1472f&is=69bff5af&hm=acd9e04031490a2cee62c58431a725243dec89a1310c115dcdf46c4312892109&",
+            "bolum-22": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276662227538061/i-am-not-a-regressor_B22.zip?ex=69c1472f&is=69bff5af&hm=a4a5778a3241bd3040f63fcbd0925f84bcf289c09d314cd03273357b06f1e033&",
+            "bolum-23": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276662600962199/i-am-not-a-regressor_B23.zip?ex=69c1472f&is=69bff5af&hm=04bd8f9c01f307c6dfac74afbc620f7b48efcf57c93489eac9dd4c2c9c94ba56&",
+            "bolum-24": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276663066394735/i-am-not-a-regressor_B24.zip?ex=69c1472f&is=69bff5af&hm=08409de7ece8fd540e84874cbd169c3f44a189b1312d98bc98fedb6310c345e0&",
+            "bolum-25": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276663800533002/i-am-not-a-regressor_B25.zip?ex=69c1472f&is=69bff5af&hm=5d0041e3b0cead82205a8ca6c64298b05f68e10dfd6ccfe23e0ed43a0ca69c62&",
+            "bolum-26": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276664169496739/i-am-not-a-regressor_B26.zip?ex=69c1472f&is=69bff5af&hm=fba4e3504bb8eac4042667b79d83ae9fc96f485e6f273a2a8f29267730793900&",
+            "bolum-27": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276664710697183/i-am-not-a-regressor_B27.zip?ex=69c1472f&is=69bff5af&hm=6e32cbb6ae42d2f59070a38076256a94fde7dfd50118b6a42fe3520e9d07b142&",
+            "bolum-28": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276665293701280/i-am-not-a-regressor_B28.zip?ex=69c14730&is=69bff5b0&hm=edfa8464047d810b91642f51b48d97c07c5c1d691e87f4a6a4765c9596667d43&",
+            "bolum-29": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276665616797696/i-am-not-a-regressor_B29.zip?ex=69c14730&is=69bff5b0&hm=1674a782dd87c1b3c39730b25a197ddbaa62b05b787a09d98a639536ee4d7098&",
+            "bolum-30": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276665935429732/i-am-not-a-regressor_B30.zip?ex=69c14730&is=69bff5b0&hm=52bfe55fcbd386f54360f79c19857b8daac4a3184f9c2d4859855912da55c56a&",
+            "bolum-11": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276480706580490/i-am-not-a-regressor_B11.zip?ex=69c14704&is=69bff584&hm=211ee8b1ca5ac32b48ee2343725e42fceb4bf30f245b291b244c3888c48c587f&",
+            "bolum-12": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276480979337337/i-am-not-a-regressor_B12.zip?ex=69c14704&is=69bff584&hm=143bc9616f3f83ea2894d995cf0201416093e01fc8f551b03d992fe2937bbf50&",
+            "bolum-13": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276481256030280/i-am-not-a-regressor_B13.zip?ex=69c14704&is=69bff584&hm=9b39da10d6c7f60b687f2ca4f35a6fae9539476564aff5fb22df08e793d912d9&",
+            "bolum-14": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276481537052704/i-am-not-a-regressor_B14.zip?ex=69c14704&is=69bff584&hm=59c18b9dec2e07489331ed6e846d6ebca9cc5d4c4ec598f2d280afe765de6d01&",
+            "bolum-15": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276481805615225/i-am-not-a-regressor_B15.zip?ex=69c14704&is=69bff584&hm=4bea3d8055b6aaca16c5a92001a07a687bb8f58d03a4caa5a2d8770b21a025f6&",
+            "bolum-16": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276482090696826/i-am-not-a-regressor_B16.zip?ex=69c14704&is=69bff584&hm=b8a20bea995f2e369d073c732f02ed35e1de2cd3527821ccba5937e822579aa1&",
+            "bolum-17": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276482338164897/i-am-not-a-regressor_B17.zip?ex=69c14704&is=69bff584&hm=9e3b5d6ee6464b100408ec948789b48d93a273cbb9e950b1d295b2d2c845ec18&",
+            "bolum-18": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276482594144498/i-am-not-a-regressor_B18.zip?ex=69c14704&is=69bff584&hm=62a3e45eb7e9d1908df05667680d2592e0325535c5db930425eefad5a33eaa02&",
+            "bolum-19": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276482879098990/i-am-not-a-regressor_B19.zip?ex=69c14704&is=69bff584&hm=13f9b251a4fd5664aca105d32034f20c8ce223cdf0a940e52fe07d9fad931132&",
+            "bolum-20": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276483126693908/i-am-not-a-regressor_B20.zip?ex=69c14704&is=69bff584&hm=eb0002eb544b066783850b8c140a2de8378ccd8221e9d6eb3f9ca38563bc7662&",
+            "bolum-1": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276117173801041/i-am-not-a-regressor_B1.zip?ex=69c146ad&is=69bff52d&hm=cbd8e9260cd6009543961a8971cdd5facc7d5e9960048b9cef21fa35c35df805&",
+            "bolum-2": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276117542895750/i-am-not-a-regressor_B2.zip?ex=69c146ad&is=69bff52d&hm=e925fe3584fabbac4538eecd99b84cfa1aa3d3c5338919737bdadf164f9d1ef7&",
+            "bolum-3": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276117849084005/i-am-not-a-regressor_B3.zip?ex=69c146ad&is=69bff52d&hm=caf248dd08e3a55aaa621f3234e93a654e30080bcb7928915f8984aeffe75c17&",
+            "bolum-4": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276118322905139/i-am-not-a-regressor_B4.zip?ex=69c146ad&is=69bff52d&hm=66ca2dd053ad5a5f575552ae3e2f5d80d6f7e58272923bb392d4bf9e7d31313c&",
+            "bolum-5": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276118620704969/i-am-not-a-regressor_B5.zip?ex=69c146ad&is=69bff52d&hm=d2abea1843d76d7b6fe1ea7eb23317dbd58c41c181ca2f131b8632d317139fc7&",
+            "bolum-6": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276118943535234/i-am-not-a-regressor_B6.zip?ex=69c146ad&is=69bff52d&hm=7881671c1191a3c5caacbbb1acf9e27190f2e68789c10eee8c7170b127e7bff9&",
+            "bolum-7": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276119199645887/i-am-not-a-regressor_B7.zip?ex=69c146ad&is=69bff52d&hm=83eb137830d36a84bf495249f277a5ba4eac7ab83f3af79443cfd016b3dee95f&",
+            "bolum-8": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276119535194385/i-am-not-a-regressor_B8.zip?ex=69c146ad&is=69bff52d&hm=cabc877b1e983ab75934c6e8c55e945f8a5cce896c0b8b8571607cae73740593&",
+            "bolum-9": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276119837179954/i-am-not-a-regressor_B9.zip?ex=69c146ae&is=69bff52e&hm=883d2959ea01370dbd4eaca558a133a4c45c224052663aa2779ff2ce90a9c772&",
+            "bolum-10": "https://cdn.discordapp.com/attachments/1485275288962072746/1485276120134848613/i-am-not-a-regressor_B10.zip?ex=69c146ae&is=69bff52e&hm=0de66261e0d287d42b874ed72260ddc9e3594e998c22c95f397668c7353cb17e&"
+        }
     }
 ]
